@@ -143,8 +143,8 @@ results_df = results_df.sort_values('AUC', ascending=False)
 
 print("\nRanking:")
 for i, (_, row) in enumerate(results_df.iterrows(), 1):
-    marker = " 🏆" if i == 1 else ""
-    status = "✅" if row['AUC'] >= 0.80 else "⚠️"
+    marker = " [BEST]" if i == 1 else ""
+    status = "[OK]" if row['AUC'] >= 0.80 else "[WARN]"
     print(f"  {i}. {row['Model']:30s} AUC={row['AUC']:.4f} {status}{marker}")
 
 print("\n" + "="*60)

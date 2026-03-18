@@ -1,0 +1,79 @@
+{
+  "data_path": "D:\\Gitproject\\fwwbdemo\\FwwbDemo\\prepared\\03_datasets\\student_semester_base.csv",
+  "train_years": [
+    "2020-2021",
+    "2021-2022",
+    "2022-2023"
+  ],
+  "test_years": [
+    "2023-2024"
+  ],
+  "train_rows": 13011,
+  "test_rows": 4281,
+  "train_positive_rows": 104,
+  "test_positive_rows": 25,
+  "numeric_cols": [
+    "selected_course_count",
+    "score_course_count",
+    "avg_score",
+    "score_std",
+    "fail_course_count",
+    "fail_ratio",
+    "avg_gpa",
+    "credit_sum",
+    "resit_exam_count",
+    "internet_month_count",
+    "internet_hours_sum",
+    "internet_hours_avg_per_month",
+    "internet_diff_mean",
+    "online_learning_bfb_snapshot",
+    "physical_test_score",
+    "bmi_height_cm",
+    "bmi_weight_kg"
+  ],
+  "categorical_cols": [
+    "gender",
+    "grade",
+    "college",
+    "major",
+    "semester"
+  ],
+  "drop_cols": [
+    "risk_event_current",
+    "risk_event_type_codes",
+    "risk_event_reason_codes",
+    "physical_test_bmi"
+  ],
+  "metrics_preview": [
+    {
+      "model": "logistic_regression",
+      "test_rows": 4281,
+      "positive_rows": 25,
+      "accuracy": 0.402476,
+      "precision": 0.008155,
+      "recall": 0.84,
+      "f1": 0.016154,
+      "roc_auc": 0.834004,
+      "pr_auc": 0.115758,
+      "tn": 1702,
+      "fp": 2554,
+      "fn": 4,
+      "tp": 21
+    },
+    {
+      "model": "random_forest",
+      "test_rows": 4281,
+      "positive_rows": 25,
+      "accuracy": 0.99416,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.878318,
+      "pr_auc": 0.09922,
+      "tn": 4256,
+      "fp": 0,
+      "fn": 25,
+      "tp": 0
+    }
+  ]
+}
