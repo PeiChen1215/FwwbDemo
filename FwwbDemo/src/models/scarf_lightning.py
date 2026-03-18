@@ -1,9 +1,11 @@
-from typing import Dict, Any, Tuple
+"""
+SCARF Lightning Module with DAG penalty support.
+"""
+from typing import Tuple
 import torch
 
-from .base_module import TS3LLightining
+from ts3l.pl_modules import TS3LLightining
 from ts3l.models import SCARF
-from ts3l.models.scarf import NTXentLoss
 from ts3l.utils.scarf_utils import SCARFConfig
 from ts3l import functional as F
 from ts3l.utils import BaseConfig
@@ -31,24 +33,6 @@ class SCARFLightning(TS3LLightining):
         self.contrastive_loss = NTXentLoss(config.tau)
 
         self._init_model(SCARF, config)
-
-    # def _get_first_phase_loss(self, batch: Tuple[torch.Tensor, torch.Tensor]) -> torch.Tensor:
-    #     """Calculate the first phase loss
-
-    #     Args:
-    #         batch (Tuple[torch.Tensor, torch.Tensor]): The input batch
-
-    #     Returns:
-    #         torch.Tensor: The final loss of first phase step
-    #     """
-
-    #     emb_anchor, emb_corrupted = F.scarf.first_phase_step(self.model, batch)
-
-    #     loss = F.scarf.first_phase_loss(
-    #         emb_anchor, emb_corrupted, self.contrastive_loss
-    #     )
-
-    #     return loss
 
     def _get_first_phase_loss(self, batch: Tuple[torch.Tensor, torch.Tensor]) -> torch.Tensor:
         """Calculate the first phase loss
@@ -123,3 +107,10 @@ class SCARFLightning(TS3LLightining):
         y_hat = F.scarf.second_phase_step(self.model, batch)
 
         return y_hat
+
+
+# Import NTXentLoss from local losses module
+try:
+    from .losses import NTXentLoss
+except ImportError:
+    from losses import NTXentLoss

@@ -1,0 +1,136 @@
+{
+  "source_data": "D:\\Gitproject\\fwwbdemo\\FwwbDemo\\prepared\\03_datasets\\student_semester_base.csv",
+  "feature_cols": [
+    "selected_course_count",
+    "score_course_count",
+    "avg_score",
+    "score_std",
+    "fail_course_count",
+    "fail_ratio",
+    "avg_gpa",
+    "credit_sum",
+    "resit_exam_count",
+    "internet_month_count",
+    "internet_hours_sum",
+    "internet_hours_avg_per_month",
+    "internet_diff_mean",
+    "online_learning_bfb_snapshot",
+    "physical_test_score",
+    "bmi_height_cm",
+    "bmi_weight_kg",
+    "gender",
+    "grade",
+    "college",
+    "major",
+    "semester"
+  ],
+  "ordered_feature_cols": [
+    "gender",
+    "grade",
+    "college",
+    "major",
+    "semester",
+    "selected_course_count",
+    "score_course_count",
+    "avg_score",
+    "score_std",
+    "fail_course_count",
+    "fail_ratio",
+    "avg_gpa",
+    "credit_sum",
+    "resit_exam_count",
+    "internet_month_count",
+    "internet_hours_sum",
+    "internet_hours_avg_per_month",
+    "internet_diff_mean",
+    "online_learning_bfb_snapshot",
+    "physical_test_score",
+    "bmi_height_cm",
+    "bmi_weight_kg"
+  ],
+  "numeric_cols": [
+    "selected_course_count",
+    "score_course_count",
+    "avg_score",
+    "score_std",
+    "fail_course_count",
+    "fail_ratio",
+    "avg_gpa",
+    "credit_sum",
+    "resit_exam_count",
+    "internet_month_count",
+    "internet_hours_sum",
+    "internet_hours_avg_per_month",
+    "internet_diff_mean",
+    "online_learning_bfb_snapshot",
+    "physical_test_score",
+    "bmi_height_cm",
+    "bmi_weight_kg"
+  ],
+  "categorical_cols": [
+    "gender",
+    "grade",
+    "college",
+    "major",
+    "semester"
+  ],
+  "categorical_col_indices": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "continuous_col_indices": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21
+  ],
+  "id_cols": [
+    "student_id",
+    "school_year",
+    "semester",
+    "term_order"
+  ],
+  "target_col": "risk_label_next_term",
+  "ssl_years": [
+    "2020-2021",
+    "2021-2022",
+    "2022-2023",
+    "2023-2024"
+  ],
+  "supervised_train_years": [
+    "2020-2021",
+    "2021-2022"
+  ],
+  "supervised_valid_years": [
+    "2022-2023"
+  ],
+  "supervised_test_years": [
+    "2023-2024"
+  ],
+  "ssl_pool_rows": 19758,
+  "supervised_train_rows": 8750,
+  "supervised_valid_rows": 4261,
+  "supervised_test_rows": 4281,
+  "last_semester_rows": 2500,
+  "supervised_positive_rows": {
+    "train": 75,
+    "valid": 29,
+    "test": 25
+  }
+}

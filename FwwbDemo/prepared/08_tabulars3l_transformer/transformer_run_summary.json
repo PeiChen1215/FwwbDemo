@@ -1,0 +1,124 @@
+{
+  "repo_reference": "https://github.com/Alcoholrithm/TabularS3L",
+  "local_repo_root": "",
+  "method": "local TabularS3L Transformer DAE first-phase embedding + KMeans",
+  "embedding_type": "FTEmbeddingConfig(required_token_dim=2)",
+  "backbone_type": "TransformerBackboneConfig",
+  "input_dim": 22,
+  "transformer_emb_dim": 64,
+  "encoder_depth": 3,
+  "n_head": 4,
+  "hidden_dim": 128,
+  "pretrain_epochs": 200,
+  "batch_size": 512,
+  "k_search_values": [
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "min_cluster_ratio": 0.03,
+  "min_cluster_size_threshold": 75,
+  "outlier_distance_percentile": 99.5,
+  "outlier_threshold": 30.973661422729492,
+  "outlier_count": 13,
+  "inlier_count": 2487,
+  "ssl_pool_rows": 19758,
+  "cluster_rows": 2500,
+  "ordered_feature_cols": [
+    "gender",
+    "grade",
+    "college",
+    "major",
+    "semester",
+    "selected_course_count",
+    "score_course_count",
+    "avg_score",
+    "score_std",
+    "fail_course_count",
+    "fail_ratio",
+    "avg_gpa",
+    "credit_sum",
+    "resit_exam_count",
+    "internet_month_count",
+    "internet_hours_sum",
+    "internet_hours_avg_per_month",
+    "internet_diff_mean",
+    "online_learning_bfb_snapshot",
+    "physical_test_score",
+    "bmi_height_cm",
+    "bmi_weight_kg"
+  ],
+  "categorical_cols": [
+    "gender",
+    "grade",
+    "college",
+    "major",
+    "semester"
+  ],
+  "continuous_cols": [
+    "selected_course_count",
+    "score_course_count",
+    "avg_score",
+    "score_std",
+    "fail_course_count",
+    "fail_ratio",
+    "avg_gpa",
+    "credit_sum",
+    "resit_exam_count",
+    "internet_month_count",
+    "internet_hours_sum",
+    "internet_hours_avg_per_month",
+    "internet_diff_mean",
+    "online_learning_bfb_snapshot",
+    "physical_test_score",
+    "bmi_height_cm",
+    "bmi_weight_kg"
+  ],
+  "cat_cardinality": [
+    2,
+    2,
+    17,
+    69,
+    2
+  ],
+  "best_k": 3,
+  "k_search": [
+    {
+      "k": 2,
+      "silhouette_score": 0.385423,
+      "min_cluster_size": 1228,
+      "max_cluster_size": 1259,
+      "valid_clustering": true
+    },
+    {
+      "k": 3,
+      "silhouette_score": 0.442696,
+      "min_cluster_size": 122,
+      "max_cluster_size": 1212,
+      "valid_clustering": true
+    },
+    {
+      "k": 4,
+      "silhouette_score": 0.405329,
+      "min_cluster_size": 121,
+      "max_cluster_size": 1083,
+      "valid_clustering": true
+    },
+    {
+      "k": 5,
+      "silhouette_score": 0.340147,
+      "min_cluster_size": 121,
+      "max_cluster_size": 801,
+      "valid_clustering": true
+    },
+    {
+      "k": 6,
+      "silhouette_score": 0.317368,
+      "min_cluster_size": 120,
+      "max_cluster_size": 753,
+      "valid_clustering": true
+    }
+  ]
+}

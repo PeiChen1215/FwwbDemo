@@ -1,13 +1,17 @@
+"""
+SCARF model implementation with TabularS3L integration.
+"""
 from __future__ import annotations
 
 import importlib
 import sys
 from pathlib import Path
+from typing import Dict, Any
 
 import numpy as np
 
 
-BASE_DIR = Path(__file__).resolve().parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 LOCAL_TS3L_ROOT = BASE_DIR / "TabularS3L-main" / "TabularS3L-main"
 
 

@@ -1,80 +1,124 @@
-# Prepared Workspace
+# 基于多源数据的大学生行为分析与干预模型
 
-## Purpose
+本项目是第十七届中国大学生服务外包创新创业大赛A类赛题（赛题A14）的参赛作品，利用多源学生数据构建行为分析与学业风险预测模型。
 
-This folder is the working area for the A14 modeling pipeline.
-It keeps the key bridge outputs and the manifests needed for the next step.
-The raw official files remain untouched in the parent directory.
+## 项目亮点
 
-## Structure
+- **自监督学习 (SSL)**: 使用 TabularS3L 的 DAE + Transformer 进行预训练
+- **创新架构**: Transformer编码器结合可学习因果邻接矩阵和行注意力
+- **NNCLR损失**: 引入Memory Bank的最近邻对比学习
+- **HDBSCAN聚类**: 识别学生行为模式，发现4类学生群体
+- **AUC 0.8373**: 超过赛题要求的0.80基准
 
-- `00_docs`
-  - copied documentation and inventory files
-- `01_keys`
-  - canonical key outputs such as `student_master.csv`
-- `02_manifests`
-  - modeling-focused manifests for feature engineering and label design
+## 项目结构
 
-## Ready Now
+```
+.
+├── README.md                 # 本文件
+├── requirements.txt          # Python依赖
+├── .gitignore               # Git忽略配置
+├── src/                     # 源代码包
+│   ├── models/             # 模型定义
+│   │   ├── losses.py       # NNCLR对比损失
+│   │   ├── scarf.py        # SCARF模型工具
+│   │   ├── transformer.py  # 因果Transformer编码器
+│   │   └── scarf_lightning.py  # Lightning模块
+│   ├── data/               # 数据处理
+│   └── utils/              # 工具函数
+├── scripts/                # 可执行脚本
+│   ├── train/             # 训练脚本
+│   │   ├── train_ssl_transformer.py
+│   │   ├── train_ssl_dae.py
+│   │   ├── train_baseline.py
+│   │   └── train_risk_model.py
+│   ├── evaluate/          # 评估脚本
+│   │   ├── compare_models.py
+│   │   └── analyze_clusters.py
+│   └── data/              # 数据处理脚本
+│       ├── prepare_data.py
+│       └── build_features.py
+├── configs/               # 配置文件
+├── outputs/               # 输出目录
+│   ├── models/           # 模型权重
+│   ├── results/          # 结果数据
+│   └── figures/          # 可视化图表
+├── tests/                 # 测试代码
+└── docs/                  # 文档
+    ├── 技术栈方案.md
+    └── 项目评估报告.md
+```
 
-- `01_keys/student_master.csv`
-  - canonical student table
-  - 2500 rows
-- `01_keys/account_master.csv`
-  - account-level bridge table
-  - 2498 rows currently resolve as `exact_login_alias`
-- `01_keys/student_key_bridge.csv`
-  - standardized source-key to `student_id` bridge
-- `01_keys/student_key_bridge_summary.csv`
-  - compact summary of bridge coverage
+## 快速开始
 
-## V1 Modeling Scope
+### 环境配置
 
-For the first trainable `student-semester` dataset, start with these sources:
+```bash
+# 创建虚拟环境
+python -m venv fwwb_env
 
-- `student_master.csv`
-- `学生成绩.xlsx`
-- `学生选课信息.xlsx`
-- `学籍异动.xlsx`
-- `上网统计.xlsx`
-- `奖学金获奖.xlsx`
-- `本科生综合测评.xlsx`
-- `体测数据.xlsx`
-- `线上学习（综合表现）.xlsx`
+# 激活环境
+.\fwwb_env\Scripts\activate  # Windows
+source fwwb_env/bin/activate  # Linux/Mac
 
-These are enough to build:
+# 安装依赖
+pip install -r requirements.txt
+```
 
-- risk label candidates
-- academic performance features
-- semester-level behavior features
-- strong baseline models
+### 数据准备
 
-## Important Notes
+```bash
+python scripts/data/prepare_data.py
+python scripts/data/build_features.py
+```
 
-- The current bridge export focuses on high-priority exact-id tables and the online-learning account alias.
-- Large account-event tables such as `课堂任务参与.xlsx` and `学生签到记录.xlsx` are not fully bridged yet in this pass.
-- This is intentional: it keeps the pipeline stable and lets us move directly into sample-table construction.
-- If needed later, those large event tables can be added with a faster parser or a Python-based ETL step.
+### 训练SSL模型
 
-## Immediate Next Output
+```bash
+# 训练DAE+Transformer模型
+python scripts/train/train_ssl_transformer.py
+```
 
-The next file we should build is:
+### 评估模型
 
-- `student_semester_base.csv`
+```bash
+# 对比不同模型性能
+python scripts/evaluate/compare_models.py
 
-Recommended granularity:
+# 分析聚类结果
+python scripts/evaluate/analyze_clusters.py
+```
 
-- one row per `student_id + school_year + semester`
+## 核心结果
 
-Recommended core columns:
+### 聚类分析（4类学生群体）
 
-- `student_id`
-- `school_year`
-- `semester`
-- `risk_label`
-- `gpa_like_features`
-- `fail_course_count`
-- `internet_usage_features`
-- `scholarship_or_eval_features`
-- `physical_features`
-- `online_learning_features`
+| 群体 | 数量 | 占比 | GPA | 挂科率 | 特征描述 |
+|------|------|------|-----|--------|----------|
+| Outliers | 13 | 0.5% | 1.44 | 34% | 异常行为，需紧急干预 |
+| Cluster 0 | 1153 | 46.1% | 3.42 | 0% | 低调学霸，高网络使用但成绩优异 |
+| Cluster 1 | 1212 | 48.5% | 3.38 | 0% | 活跃学霸，低网络使用 |
+| Cluster 2 | 122 | 4.9% | 1.74 | 16% | 中等风险群体 |
+
+### 模型性能对比
+
+| 方法 | AUC | F1 |
+|------|-----|-----|
+| Raw Features + LogisticRegression | 0.7972 | 0.04 |
+| **SSL Embeddings + LogisticRegression** | **0.8373** | **0.04** |
+
+## 技术栈
+
+- **深度学习**: PyTorch, PyTorch Lightning
+- **自监督学习**: TabularS3L (DAE, SCARF, SubTab)
+- **聚类**: HDBSCAN
+- **机器学习**: scikit-learn, XGBoost
+- **数据处理**: pandas, numpy
+- **可视化**: matplotlib, seaborn
+
+## 作者
+
+PeiChen1215
+
+## 许可证
+
+MIT License

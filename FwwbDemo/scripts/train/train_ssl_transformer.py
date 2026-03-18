@@ -24,9 +24,11 @@ from sklearn.metrics import silhouette_score
 from sklearn.preprocessing import StandardScaler
 
 
-BASE_DIR = Path(__file__).resolve().parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 INPUT_DIR = BASE_DIR / "prepared" / "06_tabulars3l"
-OUTPUT_DIR = BASE_DIR / "prepared" / "08_tabulars3l_transformer"
+OUTPUT_DIR = BASE_DIR / "outputs" / "results"
+# Ensure output directory exists
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 LOCAL_TS3L_ROOT = BASE_DIR / "TabularS3L-main" / "TabularS3L-main"
 
 RANDOM_STATE = 42
