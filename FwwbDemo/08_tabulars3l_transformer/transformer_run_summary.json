@@ -1,0 +1,124 @@
+{
+  "repo_reference": "https://github.com/Alcoholrithm/TabularS3L",
+  "local_repo_root": "D:\\桌面\\4-a14基于多源数据的大学生行为分析与干预模型设计\\4-a14基于多源数据的大学生行为分析与干预模型设计\\数据集及类型\\TabularS3L-main\\TabularS3L-main",
+  "method": "local TabularS3L Transformer DAE first-phase embedding + KMeans",
+  "embedding_type": "FTEmbeddingConfig(required_token_dim=2)",
+  "backbone_type": "TransformerBackboneConfig",
+  "input_dim": 22,
+  "transformer_emb_dim": 64,
+  "encoder_depth": 3,
+  "n_head": 4,
+  "hidden_dim": 128,
+  "pretrain_epochs": 200,
+  "batch_size": 256,
+  "k_search_values": [
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "min_cluster_ratio": 0.03,
+  "min_cluster_size_threshold": 75,
+  "outlier_distance_percentile": 99.5,
+  "outlier_threshold": 20.732807159423828,
+  "outlier_count": 13,
+  "inlier_count": 2487,
+  "ssl_pool_rows": 19758,
+  "cluster_rows": 2500,
+  "ordered_feature_cols": [
+    "gender",
+    "grade",
+    "college",
+    "major",
+    "semester",
+    "selected_course_count",
+    "score_course_count",
+    "avg_score",
+    "score_std",
+    "fail_course_count",
+    "fail_ratio",
+    "avg_gpa",
+    "credit_sum",
+    "resit_exam_count",
+    "internet_month_count",
+    "internet_hours_sum",
+    "internet_hours_avg_per_month",
+    "internet_diff_mean",
+    "online_learning_bfb_snapshot",
+    "physical_test_score",
+    "bmi_height_cm",
+    "bmi_weight_kg"
+  ],
+  "categorical_cols": [
+    "gender",
+    "grade",
+    "college",
+    "major",
+    "semester"
+  ],
+  "continuous_cols": [
+    "selected_course_count",
+    "score_course_count",
+    "avg_score",
+    "score_std",
+    "fail_course_count",
+    "fail_ratio",
+    "avg_gpa",
+    "credit_sum",
+    "resit_exam_count",
+    "internet_month_count",
+    "internet_hours_sum",
+    "internet_hours_avg_per_month",
+    "internet_diff_mean",
+    "online_learning_bfb_snapshot",
+    "physical_test_score",
+    "bmi_height_cm",
+    "bmi_weight_kg"
+  ],
+  "cat_cardinality": [
+    2,
+    2,
+    17,
+    69,
+    2
+  ],
+  "best_k": 5,
+  "k_search": [
+    {
+      "k": 2,
+      "silhouette_score": 0.265213,
+      "min_cluster_size": 834,
+      "max_cluster_size": 1653,
+      "valid_clustering": true
+    },
+    {
+      "k": 3,
+      "silhouette_score": 0.296739,
+      "min_cluster_size": 611,
+      "max_cluster_size": 1191,
+      "valid_clustering": true
+    },
+    {
+      "k": 4,
+      "silhouette_score": 0.325274,
+      "min_cluster_size": 111,
+      "max_cluster_size": 1132,
+      "valid_clustering": true
+    },
+    {
+      "k": 5,
+      "silhouette_score": 0.341496,
+      "min_cluster_size": 111,
+      "max_cluster_size": 937,
+      "valid_clustering": true
+    },
+    {
+      "k": 6,
+      "silhouette_score": 0.332547,
+      "min_cluster_size": 110,
+      "max_cluster_size": 873,
+      "valid_clustering": true
+    }
+  ]
+}
