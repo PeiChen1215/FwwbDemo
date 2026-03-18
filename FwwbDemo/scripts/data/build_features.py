@@ -6,8 +6,8 @@ import json
 import pandas as pd
 
 
-BASE_DIR = Path(__file__).resolve().parent
-INPUT_DIR = BASE_DIR / "prepared" / "08_tabulars3l_transformer"
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+INPUT_DIR = BASE_DIR / "outputs" / "results"
 
 
 def load_cluster_summary() -> pd.DataFrame:

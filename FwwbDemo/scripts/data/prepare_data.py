@@ -8,9 +8,12 @@ import numpy as np
 import pandas as pd
 
 
-BASE_DIR = Path(__file__).resolve().parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 DATA_PATH = BASE_DIR / "prepared" / "03_datasets" / "student_semester_base.csv"
 OUTPUT_DIR = BASE_DIR / "prepared" / "06_tabulars3l"
+
+# Ensure output directory exists
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 TARGET_COL = "risk_label_next_term"
 SSL_YEARS = {"2020-2021", "2021-2022", "2022-2023", "2023-2024"}

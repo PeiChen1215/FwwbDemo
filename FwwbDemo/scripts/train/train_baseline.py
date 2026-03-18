@@ -23,8 +23,12 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 
-DATA_PATH = Path("prepared/03_datasets/student_semester_base.csv")
-OUTPUT_DIR = Path("prepared/04_models")
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+DATA_PATH = BASE_DIR / "prepared" / "03_datasets" / "student_semester_base.csv"
+OUTPUT_DIR = BASE_DIR / "outputs" / "results"
+
+# Ensure output directory exists
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 TARGET_COL = "risk_label_next_term"
 TRAIN_YEARS = {"2020-2021", "2021-2022", "2022-2023"}

@@ -16,10 +16,13 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.manifold import TSNE
 
 
-BASE_DIR = Path(__file__).resolve().parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 DATA_DIR = BASE_DIR / "prepared" / "06_tabulars3l"
-OUTPUT_DIR = BASE_DIR / "prepared" / "06_tabulars3l"
+OUTPUT_DIR = BASE_DIR / "outputs" / "results"
 LOCAL_TS3L_ROOT = BASE_DIR / "TabularS3L-main" / "TabularS3L-main"
+
+# Ensure output directory exists
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 RANDOM_STATE = 42
 LATENT_DIM = 16

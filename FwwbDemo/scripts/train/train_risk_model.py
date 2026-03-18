@@ -23,11 +23,14 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 
-BASE_DIR = Path(__file__).resolve().parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 BASE_DATA_PATH = BASE_DIR / "prepared" / "03_datasets" / "student_semester_base.csv"
 EMBEDDING_PATH = BASE_DIR / "prepared" / "06_tabulars3l" / "tabulars3l_semester_embeddings.csv"
 CLUSTER_ASSIGN_PATH = BASE_DIR / "prepared" / "06_tabulars3l" / "tabulars3l_semester_cluster_assignment.csv"
-OUTPUT_DIR = BASE_DIR / "prepared" / "07_embedding_risk"
+OUTPUT_DIR = BASE_DIR / "outputs" / "results"
+
+# Ensure output directory exists
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 TARGET_COL = "risk_label_next_term"
 TRAIN_YEARS = {"2020-2021", "2021-2022", "2022-2023"}

@@ -1,6 +1,7 @@
 """
 简化版：对比原始特征 vs SSL嵌入特征的模型性能
 """
+from pathlib import Path
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -15,8 +16,9 @@ print("="*60)
 
 # 1. 加载数据
 print("\n[1/5] Loading data...")
-base_df = pd.read_csv("prepared/03_datasets/student_semester_base.csv")
-emb_df = pd.read_csv("prepared/06_tabulars3l/tabulars3l_semester_embeddings.csv")
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+base_df = pd.read_csv(BASE_DIR / "prepared" / "03_datasets" / "student_semester_base.csv")
+emb_df = pd.read_csv(BASE_DIR / "prepared" / "06_tabulars3l" / "tabulars3l_semester_embeddings.csv")
 
 # 过滤有效标签
 df = base_df[base_df['risk_label_next_term'].notna()].copy()
